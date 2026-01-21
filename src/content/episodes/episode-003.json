@@ -1,0 +1,13 @@
+{
+  "title": "The Last Librarian of Mars",
+  "episodeNumber": 3,
+  "publishDate": "2025-01-09T00:00:00.000Z",
+  "description": "In the dusty archives of the Red Planet, one librarian fights to preserve humanity's stories against cosmic bureaucracy and Dewey Decimal disasters.",
+  "audioUrl": "https://example.com/audio/episode-003.mp3",
+  "featuredStory": {
+    "title": "The Nine Billion Names of God",
+    "author": "Arthur C. Clarke",
+    "year": 1953
+  },
+  "duration": "45:18"
+}

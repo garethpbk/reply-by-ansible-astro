@@ -1,0 +1,13 @@
+{
+  "title": "When Dragons Learned to Code",
+  "episodeNumber": 4,
+  "publishDate": "2025-01-13T00:00:00.000Z",
+  "description": "The ancient beasts discover programming languages and suddenly every treasure hoard is blockchain-based. A tale of magic meeting machine learning.",
+  "audioUrl": "https://example.com/audio/episode-004.mp3",
+  "featuredStory": {
+    "title": "We Can Remember It for You Wholesale",
+    "author": "Philip K. Dick",
+    "year": 1966
+  },
+  "duration": "41:55"
+}

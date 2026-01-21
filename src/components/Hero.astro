@@ -1,0 +1,175 @@
+---
+import AudioPlayer from './AudioPlayer.astro';
+
+interface Props {
+  episode: {
+    title: string;
+    episodeNumber: number;
+    publishDate: Date;
+    description: string;
+    audioUrl: string;
+    featuredStory: {
+      title: string;
+      author: string;
+      year?: number;
+    };
+    duration?: string;
+  };
+}
+
+const { episode } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="banner-placeholder">
+        <span class="banner-title">REPLY BY ANSIBLE</span>
+        <span class="subtitle">BANNER IMAGE</span>
+      </div>
+      <div class="episode-info">
+        <span class="episode-label">Latest Episode #{episode.episodeNumber}</span>
+        <h1>{episode.title}</h1>
+        <p class="featured-story">
+          Featuring: <em>{episode.featuredStory.title}</em> by {episode.featuredStory.author}
+          {episode.featuredStory.year && `(${episode.featuredStory.year})`}
+        </p>
+        <p class="description">{episode.description}</p>
+        <AudioPlayer audioUrl={episode.audioUrl} duration={episode.duration} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    background-color: #0a0e17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8edf5;
+    padding: 2rem 0;
+  }
+
+  .hero-container {
+    width: 100%;
+    max-width: 1280px;
+    padding: 0 2rem;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .banner-placeholder {
+    background: rgba(0, 217, 255, 0.05);
+    border: 2px dashed #00d9ff;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #00d9ff;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .banner-placeholder .banner-title {
+    letter-spacing: 0.1em;
+  }
+
+  .banner-placeholder .subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+  }
+
+  .episode-label {
+    display: inline-block;
+    color: #00d9ff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .episode-info h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.1;
+    color: #e8edf5;
+  }
+
+  .featured-story {
+    color: rgba(232, 237, 245, 0.8);
+    font-size: 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .featured-story em {
+    color: #00d9ff;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .description {
+    color: rgba(232, 237, 245, 0.7);
+    font-size: 1.125rem;
+    font-family: 'Rajdhani', sans-serif;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-content {
+      gap: 3rem;
+    }
+
+    .episode-info h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .hero-container {
+      padding: 0 1rem;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .banner-placeholder {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .episode-info h1 {
+      font-size: 2rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+  }
+</style>

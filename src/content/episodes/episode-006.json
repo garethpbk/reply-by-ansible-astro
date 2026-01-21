@@ -1,0 +1,13 @@
+{
+  "title": "The Great Asteroid Baking Competition",
+  "episodeNumber": 6,
+  "publishDate": "2025-01-21T00:00:00.000Z",
+  "description": "In the final frontier, competitive baking takes on cosmic proportions. We discuss themes of culinary arts in zero gravity and the existential question: can soufflés rise in space?",
+  "audioUrl": "https://example.com/audio/episode-006.mp3",
+  "featuredStory": {
+    "title": "Story of Your Life",
+    "author": "Ted Chiang",
+    "year": 1998
+  },
+  "duration": "48:22"
+}

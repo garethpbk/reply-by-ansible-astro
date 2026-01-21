@@ -1,0 +1,42 @@
+---
+interface Props {
+  audioUrl: string;
+  duration?: string;
+}
+
+const { audioUrl, duration } = Astro.props;
+---
+
+<div class="audio-player">
+  <audio controls preload="metadata">
+    <source src={audioUrl} type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  {duration && <span class="duration">{duration}</span>}
+</div>
+
+<style>
+  .audio-player {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .audio-player audio {
+    width: 100%;
+    background: rgba(0, 217, 255, 0.08);
+    border-radius: 8px;
+    outline: none;
+  }
+
+  .duration {
+    color: #00d9ff;
+    font-size: 0.875rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: right;
+  }
+</style>

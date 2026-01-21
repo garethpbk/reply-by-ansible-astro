@@ -1,0 +1,123 @@
+---
+import AudioPlayer from './AudioPlayer.astro';
+
+interface Props {
+  episode: {
+    title: string;
+    episodeNumber: number;
+    publishDate: Date;
+    description: string;
+    audioUrl: string;
+    featuredStory: {
+      title: string;
+      author: string;
+      year?: number;
+    };
+    duration?: string;
+  };
+}
+
+const { episode } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+};
+---
+
+<article class="episode-card">
+  <div class="episode-header">
+    <span class="episode-number">Episode {episode.episodeNumber}</span>
+    <time datetime={episode.publishDate.toISOString()}>
+      {formatDate(episode.publishDate)}
+    </time>
+  </div>
+  <h3>{episode.title}</h3>
+  <p class="featured-story">
+    Featuring: <em>{episode.featuredStory.title}</em> by {episode.featuredStory.author}
+    {episode.featuredStory.year && `(${episode.featuredStory.year})`}
+  </p>
+  <p class="description">{episode.description}</p>
+  <AudioPlayer audioUrl={episode.audioUrl} duration={episode.duration} />
+</article>
+
+<style>
+  .episode-card {
+    background: rgba(0, 217, 255, 0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: background 0.3s ease;
+    border: 1px solid rgba(0, 217, 255, 0.1);
+  }
+
+  .episode-card:hover {
+    background: rgba(0, 217, 255, 0.12);
+    border-color: rgba(0, 217, 255, 0.2);
+  }
+
+  .episode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .episode-number {
+    color: #00d9ff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .episode-card time {
+    color: rgba(232, 237, 245, 0.6);
+    font-size: 0.875rem;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .episode-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: #e8edf5;
+    line-height: 1.3;
+  }
+
+  .featured-story {
+    color: rgba(232, 237, 245, 0.8);
+    font-size: 0.9375rem;
+    font-family: 'Rajdhani', sans-serif;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-story em {
+    color: #00d9ff;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .description {
+    color: rgba(232, 237, 245, 0.7);
+    font-family: 'Rajdhani', sans-serif;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .episode-card {
+      padding: 1.5rem;
+    }
+
+    .episode-card h3 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

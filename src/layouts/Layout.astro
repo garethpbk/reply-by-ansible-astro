@@ -5,18 +5,61 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+		<title>Reply By Ansible - A Science Fiction & Fantasy Podcast</title>
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
 	html,
 	body {
 		margin: 0;
+		padding: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	body {
+		font-family: 'Rajdhani', sans-serif;
+		background-color: #0a0e17;
+		color: #e8edf5;
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Orbitron', sans-serif;
+		font-weight: 600;
+		line-height: 1.2;
+		margin: 0;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: #00d9ff;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	a:hover {
+		color: #33e0ff;
 	}
 </style>

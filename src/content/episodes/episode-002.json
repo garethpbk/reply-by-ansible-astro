@@ -1,0 +1,13 @@
+{
+  "title": "Robots in Love with Toasters",
+  "episodeNumber": 2,
+  "publishDate": "2025-01-05T00:00:00.000Z",
+  "description": "A philosophical exploration of artificial intelligence romance and small appliance attraction. What happens when your smart home develops feelings?",
+  "audioUrl": "https://example.com/audio/episode-002.mp3",
+  "featuredStory": {
+    "title": "Nightfall",
+    "author": "Isaac Asimov",
+    "year": 1941
+  },
+  "duration": "38:42"
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Interdimensional Tax Auditors",
+  "episodeNumber": 5,
+  "publishDate": "2025-01-17T00:00:00.000Z",
+  "description": "When the IRS discovers parallel universes, nobody's deductions are safe. A horror story about accounting across infinite realities.",
+  "audioUrl": "https://example.com/audio/episode-005.mp3",
+  "featuredStory": {
+    "title": "The Ones Who Walk Away from Omelas",
+    "author": "Ursula K. Le Guin",
+    "year": 1973
+  },
+  "duration": "39:27"
+}

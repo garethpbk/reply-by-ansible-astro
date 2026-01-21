@@ -1,11 +1,77 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Get all episodes and sort by episode number descending (latest first)
+const allEpisodes = await getCollection('episodes');
+const sortedEpisodes = allEpisodes
+  .sort((a: CollectionEntry<'episodes'>, b: CollectionEntry<'episodes'>) => b.data.episodeNumber - a.data.episodeNumber);
+
+// Latest episode for hero
+const latestEpisode = sortedEpisodes[0];
+
+// Previous episodes (all except the latest)
+const previousEpisodes = sortedEpisodes.slice(1);
 ---
 
 <Layout>
-	<Welcome />
+  <Hero episode={latestEpisode.data} />
+
+  <section class="previous-episodes">
+    <div class="container">
+      <h2>Previous Episodes</h2>
+      <div class="episodes-grid">
+        {previousEpisodes.map((episode: CollectionEntry<'episodes'>) => (
+          <EpisodeCard episode={episode.data} />
+        ))}
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .previous-episodes {
+    background-color: #0a0e17;
+    padding: 4rem 2rem;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .previous-episodes h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    color: #e8edf5;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  .episodes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .previous-episodes {
+      padding: 6rem 2rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .previous-episodes {
+      padding: 3rem 1rem;
+    }
+
+    .previous-episodes h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

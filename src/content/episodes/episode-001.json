@@ -1,0 +1,13 @@
+{
+  "title": "The Quantum Pickle Paradox",
+  "episodeNumber": 1,
+  "publishDate": "2025-01-01T00:00:00.000Z",
+  "description": "We explore the bizarre tale of sentient pickles traveling through quantum foam, discussing themes of identity and condiment consciousness in this classic story.",
+  "audioUrl": "https://example.com/audio/episode-001.mp3",
+  "featuredStory": {
+    "title": "A Sound of Thunder",
+    "author": "Ray Bradbury",
+    "year": 1952
+  },
+  "duration": "42:15"
+}
