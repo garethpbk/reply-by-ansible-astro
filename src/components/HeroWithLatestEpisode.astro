@@ -84,12 +84,12 @@ const formatDate = (date: Date) => {
     width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    background: linear-gradient(135deg, #1a1f2e 0%, #0a0e17 100%);
   }
 
   .hero-background {
-    height: 60vh;
-    background: linear-gradient(135deg, #1a1f2e 0%, #0a0e17 100%);
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +98,7 @@ const formatDate = (date: Date) => {
 
   .banner-image-container {
     width: 100%;
-    max-width: 50vh;
+    max-width: 600px;
     aspect-ratio: 1 / 1;
     padding: 2rem;
   }
@@ -111,19 +111,20 @@ const formatDate = (date: Date) => {
   }
 
   .latest-episode-container {
-    height: 40vh;
-    background: linear-gradient(135deg, #1a1f2e 0%, #0a0e17 100%);
-    padding: 1.5rem 2rem;
+    width: 50%;
+    padding: 2rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-shrink: 0;
     overflow: hidden;
   }
 
   .latest-episode-wrapper {
-    max-width: 1280px;
-    margin: 0 auto;
     width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
   }
 
   .latest-badge {
@@ -145,18 +146,16 @@ const formatDate = (date: Date) => {
     border-radius: 0 12px 12px 12px;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
   }
 
   .latest-episode-card.has-image {
-    display: flex;
     align-items: stretch;
-    gap: 0;
-    height: 100%;
-    max-height: calc(40vh - 3rem - 2.5rem);
   }
 
   .latest-episode-card.no-image {
-    display: block;
+    display: flex;
   }
 
   .episode-image-container {
@@ -166,27 +165,26 @@ const formatDate = (date: Date) => {
   }
 
   .episode-image {
-    width: auto;
-    height: 100%;
-    max-height: calc(40vh - 3rem - 2.5rem);
-    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     flex-shrink: 0;
+    max-height: 250px;
   }
 
   .episode-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     display: block;
   }
 
   .episode-content {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     min-width: 0;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   .episode-header {
@@ -239,7 +237,7 @@ const formatDate = (date: Date) => {
     color: rgba(232, 237, 245, 0.7);
     font-family: "Rajdhani", sans-serif;
     line-height: 1.4;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     font-size: 0.875rem;
   }
 
@@ -266,6 +264,13 @@ const formatDate = (date: Date) => {
     .hero-section {
       height: auto;
       min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .hero-background {
+      width: 100%;
+      height: auto;
+      padding: 2rem 0;
     }
 
     .banner-image-container {
@@ -274,6 +279,7 @@ const formatDate = (date: Date) => {
     }
 
     .latest-episode-container {
+      width: 100%;
       padding: 1rem;
     }
 

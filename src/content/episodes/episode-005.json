@@ -1,13 +1,15 @@
 {
-  "title": "Interdimensional Tax Auditors",
+  "title": "The Moon Moth",
   "episodeNumber": 5,
-  "publishDate": "2025-01-17T00:00:00.000Z",
-  "description": "When the IRS discovers parallel universes, nobody's deductions are safe. A horror story about accounting across infinite realities.",
-  "audioUrl": "https://example.com/audio/episode-005.mp3",
+  "publishDate": "2022-08-21T00:00:00.000Z",
+  "description": "The 1961 story by Jack Vance.",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/56457458/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-7-23%2F01485303-dc62-674b-e6e9-37c71711c43c.mp3",
+  "storyUrl": "https://www.arthurchandler.com/moon-moth",
   "featuredStory": {
-    "title": "The Ones Who Walk Away from Omelas",
-    "author": "Ursula K. Le Guin",
-    "year": 1973
+    "title": "The Moon Moth",
+    "author": "Jack Vance",
+    "year": 1961
   },
-  "duration": "39:27"
+  "duration": "01:14:56",
+  "image": "../../assets/images/episode_005.jpg"
 }

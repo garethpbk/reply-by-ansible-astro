@@ -67,16 +67,9 @@ const formatDate = (date: Date) => {
     transition: background 0.3s ease;
     border: 1px solid rgba(0, 217, 255, 0.1);
     overflow: hidden;
-  }
-
-  .episode-card.has-image {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 0;
-  }
-
-  .episode-card.no-image {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   .episode-card:hover {
@@ -85,26 +78,28 @@ const formatDate = (date: Date) => {
   }
 
   .episode-image-container {
-    display: flex;
-    align-items: center;
+    flex-shrink: 0;
   }
 
   .episode-image {
-    width: 300px;
-    height: 300px;
-    flex-shrink: 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
   }
 
   .episode-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     display: block;
   }
 
   .episode-content {
-    padding: 2rem;
+    padding: 1.5rem;
     min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .episode-header {
@@ -133,18 +128,18 @@ const formatDate = (date: Date) => {
 
   .episode-card h3 {
     font-family: "Orbitron", sans-serif;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 0 0.75rem 0;
+    margin: 0 0 0.5rem 0;
     color: #e8edf5;
     line-height: 1.3;
   }
 
   .featured-story {
     color: rgba(232, 237, 245, 0.8);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-family: "Rajdhani", sans-serif;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .featured-story em {
@@ -156,42 +151,19 @@ const formatDate = (date: Date) => {
   .description {
     color: rgba(232, 237, 245, 0.7);
     font-family: "Rajdhani", sans-serif;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex: 1;
+    font-size: 0.875rem;
   }
 
   @media (max-width: 767px) {
-    .episode-card.has-image {
-      grid-template-columns: 1fr;
-    }
-
-    .episode-image {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-    }
-
     .episode-content {
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
 
     .episode-card h3 {
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .episode-card.has-image {
-      grid-template-columns: 150px 1fr;
-    }
-
-    .episode-image {
-      width: 150px;
-      height: 150px;
-    }
-
-    .episode-content {
-      padding: 1.5rem;
+      font-size: 1.125rem;
     }
   }
 </style>
