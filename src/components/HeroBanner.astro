@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/images/reply_by_ansible_banner_square.jpg';
+---
+
+<section class="hero-banner">
+  <div class="hero-banner-container">
+    <div class="banner-content">
+      <Image src={bannerImage} alt="Reply By Ansible podcast" />
+      <div class="banner-overlay">
+        <h1>Reply By Ansible</h1>
+        <p class="tagline">Tracing the history of science fiction and fantasy through classic short stories</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #0a0e17;
+    overflow: hidden;
+  }
+
+  .hero-banner-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .banner-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .banner-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(10, 14, 23, 0.95) 0%, rgba(10, 14, 23, 0.7) 50%, transparent 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+
+  .banner-overlay h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #00d9ff;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 20px rgba(0, 217, 255, 0.5);
+  }
+
+  .tagline {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #e8edf5;
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1023px) {
+    .banner-overlay h1 {
+      font-size: 3rem;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-banner {
+      height: 70vh;
+      min-height: 500px;
+    }
+
+    .banner-overlay {
+      padding: 2rem 1.5rem;
+    }
+
+    .banner-overlay h1 {
+      font-size: 2rem;
+    }
+
+    .tagline {
+      font-size: 1.125rem;
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
+import HeroWithLatestEpisode from '../components/HeroWithLatestEpisode.astro';
 import EpisodeCard from '../components/EpisodeCard.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
@@ -9,31 +9,27 @@ import type { CollectionEntry } from 'astro:content';
 const allEpisodes = await getCollection('episodes');
 const sortedEpisodes = allEpisodes
   .sort((a: CollectionEntry<'episodes'>, b: CollectionEntry<'episodes'>) => b.data.episodeNumber - a.data.episodeNumber);
-
-// Latest episode for hero
-const latestEpisode = sortedEpisodes[0];
-
-// Previous episodes (all except the latest)
-const previousEpisodes = sortedEpisodes.slice(1);
 ---
 
 <Layout>
-  <Hero episode={latestEpisode.data} />
+  <HeroWithLatestEpisode episode={sortedEpisodes[0].data} />
 
-  <section class="previous-episodes">
-    <div class="container">
-      <h2>Previous Episodes</h2>
-      <div class="episodes-grid">
-        {previousEpisodes.map((episode: CollectionEntry<'episodes'>) => (
-          <EpisodeCard episode={episode.data} />
-        ))}
+  {sortedEpisodes.length > 1 && (
+    <section class="episodes-section">
+      <div class="container">
+        <h2>Previous Episodes</h2>
+        <div class="episodes-grid">
+          {sortedEpisodes.slice(1).map((episode: CollectionEntry<'episodes'>) => (
+            <EpisodeCard episode={episode.data} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Layout>
 
 <style>
-  .previous-episodes {
+  .episodes-section {
     background-color: #0a0e17;
     padding: 4rem 2rem;
   }
@@ -43,13 +39,13 @@ const previousEpisodes = sortedEpisodes.slice(1);
     margin: 0 auto;
   }
 
-  .previous-episodes h2 {
+  .episodes-section h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: 3rem;
     color: #e8edf5;
-    text-align: center;
+    text-align: left;
     letter-spacing: 0.05em;
   }
 
@@ -60,17 +56,17 @@ const previousEpisodes = sortedEpisodes.slice(1);
   }
 
   @media (min-width: 1024px) {
-    .previous-episodes {
+    .episodes-section {
       padding: 6rem 2rem;
     }
   }
 
   @media (max-width: 767px) {
-    .previous-episodes {
+    .episodes-section {
       padding: 3rem 1rem;
     }
 
-    .previous-episodes h2 {
+    .episodes-section h2 {
       font-size: 2rem;
     }
   }

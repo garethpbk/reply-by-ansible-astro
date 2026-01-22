@@ -1,13 +1,14 @@
 {
-  "title": "The Quantum Pickle Paradox",
+  "title": "Nyumbani Tales",
   "episodeNumber": 1,
-  "publishDate": "2025-01-01T00:00:00.000Z",
-  "description": "We explore the bizarre tale of sentient pickles traveling through quantum foam, discussing themes of identity and condiment consciousness in this classic story.",
-  "audioUrl": "https://example.com/audio/episode-001.mp3",
+  "publishDate": "2022-07-02T00:00:00.000Z",
+  "description": "Join Luke & Gareth on their inaugural journey into the mystic world of Nyumbani, the creation of author Charles R. Saunders.",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/54314055/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-6-2%2Fce7a6b64-40d2-16e5-7cfd-b6b0c21e0ad3.mp3",
   "featuredStory": {
-    "title": "A Sound of Thunder",
-    "author": "Ray Bradbury",
-    "year": 1952
+    "title": "Nyumbani Tales",
+    "author": "Charles R. Saunders",
+    "year": 2017
   },
-  "duration": "42:15"
+  "duration": "58:28",
+  "image": "../../assets/images/episode_001.jpg"
 }

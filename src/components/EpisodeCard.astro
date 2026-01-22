@@ -1,5 +1,7 @@
 ---
-import AudioPlayer from './AudioPlayer.astro';
+import AudioPlayer from "./AudioPlayer.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   episode: {
@@ -14,48 +16,96 @@ interface Props {
       year?: number;
     };
     duration?: string;
+    image?: ImageMetadata;
   };
 }
 
 const { episode } = Astro.props;
 
 const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(date);
 };
 ---
 
-<article class="episode-card">
-  <div class="episode-header">
-    <span class="episode-number">Episode {episode.episodeNumber}</span>
-    <time datetime={episode.publishDate.toISOString()}>
-      {formatDate(episode.publishDate)}
-    </time>
+<article class={`episode-card ${episode.image ? "has-image" : "no-image"}`}>
+  {
+    episode.image && (
+      <div class="episode-image-container">
+        <div class="episode-image">
+          <Image src={episode.image} alt={episode.title} />
+        </div>
+      </div>
+    )
+  }
+  <div class="episode-content">
+    <div class="episode-header">
+      <span class="episode-number">Episode {episode.episodeNumber}</span>
+      <time datetime={episode.publishDate.toISOString()}>
+        {formatDate(episode.publishDate)}
+      </time>
+    </div>
+    <h3>{episode.title}</h3>
+    <p class="featured-story">
+      Featuring: <em>{episode.featuredStory.title}</em> by {
+        episode.featuredStory.author
+      }
+      {episode.featuredStory.year && `(${episode.featuredStory.year})`}
+    </p>
+    <p class="description">{episode.description}</p>
+    <AudioPlayer audioUrl={episode.audioUrl} duration={episode.duration} />
   </div>
-  <h3>{episode.title}</h3>
-  <p class="featured-story">
-    Featuring: <em>{episode.featuredStory.title}</em> by {episode.featuredStory.author}
-    {episode.featuredStory.year && `(${episode.featuredStory.year})`}
-  </p>
-  <p class="description">{episode.description}</p>
-  <AudioPlayer audioUrl={episode.audioUrl} duration={episode.duration} />
 </article>
 
 <style>
   .episode-card {
     background: rgba(0, 217, 255, 0.08);
     border-radius: 12px;
-    padding: 2rem;
     transition: background 0.3s ease;
     border: 1px solid rgba(0, 217, 255, 0.1);
+    overflow: hidden;
+  }
+
+  .episode-card.has-image {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+  }
+
+  .episode-card.no-image {
+    display: block;
   }
 
   .episode-card:hover {
     background: rgba(0, 217, 255, 0.12);
     border-color: rgba(0, 217, 255, 0.2);
+  }
+
+  .episode-image-container {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .episode-image {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .episode-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .episode-content {
+    padding: 2rem;
+    min-width: 0;
   }
 
   .episode-header {
@@ -71,7 +121,7 @@ const formatDate = (date: Date) => {
     color: #00d9ff;
     font-weight: 600;
     font-size: 0.875rem;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: "Rajdhani", sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
@@ -79,11 +129,11 @@ const formatDate = (date: Date) => {
   .episode-card time {
     color: rgba(232, 237, 245, 0.6);
     font-size: 0.875rem;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: "Rajdhani", sans-serif;
   }
 
   .episode-card h3 {
-    font-family: 'Orbitron', sans-serif;
+    font-family: "Orbitron", sans-serif;
     font-size: 1.75rem;
     font-weight: 600;
     margin: 0 0 0.75rem 0;
@@ -94,7 +144,7 @@ const formatDate = (date: Date) => {
   .featured-story {
     color: rgba(232, 237, 245, 0.8);
     font-size: 0.9375rem;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: "Rajdhani", sans-serif;
     margin-bottom: 0.75rem;
   }
 
@@ -106,18 +156,43 @@ const formatDate = (date: Date) => {
 
   .description {
     color: rgba(232, 237, 245, 0.7);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: "Rajdhani", sans-serif;
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
 
   @media (max-width: 767px) {
-    .episode-card {
+    .episode-card.has-image {
+      grid-template-columns: 1fr;
+    }
+
+    .episode-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .episode-content {
       padding: 1.5rem;
     }
 
     .episode-card h3 {
       font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .episode-card.has-image {
+      grid-template-columns: 150px 1fr;
+    }
+
+    .episode-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .episode-content {
+      padding: 1.5rem;
     }
   }
 </style>

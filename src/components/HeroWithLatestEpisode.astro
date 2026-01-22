@@ -1,0 +1,307 @@
+---
+import { Image } from "astro:assets";
+import AudioPlayer from "./AudioPlayer.astro";
+import bannerImage from "../assets/images/reply_by_ansible_banner_square.jpg";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  episode: {
+    title: string;
+    episodeNumber: number;
+    publishDate: Date;
+    description: string;
+    audioUrl: string;
+    featuredStory: {
+      title: string;
+      author: string;
+      year?: number;
+    };
+    duration?: string;
+    image?: ImageMetadata;
+  };
+}
+
+const { episode } = Astro.props;
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};
+---
+
+<section class="hero-section">
+  <div class="hero-background">
+    <Image src={bannerImage} alt="Reply By Ansible podcast" />
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Reply By Ansible</h1>
+      <p class="tagline">
+        Tracing the history of science fiction and fantasy through classic short
+        stories
+      </p>
+    </div>
+  </div>
+
+  <div class="latest-episode-container">
+    <div class="latest-episode-wrapper">
+      <span class="latest-badge">Latest Episode</span>
+      <article
+        class={`latest-episode-card ${episode.image ? "has-image" : "no-image"}`}
+      >
+        {
+          episode.image && (
+            <div class="episode-image-container">
+              <div class="episode-image">
+                <Image src={episode.image} alt={episode.title} />
+              </div>
+            </div>
+          )
+        }
+        <div class="episode-content">
+          <div class="episode-header">
+            <h2>{episode.title}</h2>
+            <div class="episode-meta">
+              <span class="episode-number">Episode {episode.episodeNumber}</span
+              >
+              <span class="separator">•</span>
+              <time datetime={episode.publishDate.toISOString()}>
+                {formatDate(episode.publishDate)}
+              </time>
+            </div>
+          </div>
+          <AudioPlayer
+            audioUrl={episode.audioUrl}
+            duration={episode.duration}
+          />
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    background-color: #0a0e17;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 14, 23, 0.3) 0%,
+      rgba(10, 14, 23, 0.9) 100%
+    );
+  }
+
+  .hero-text {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-text h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #00d9ff;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.1em;
+    text-shadow: 0 2px 20px rgba(0, 217, 255, 0.5);
+  }
+
+  .tagline {
+    font-family: "Rajdhani", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #e8edf5;
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .latest-episode-container {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to top, #0a0e17 70%, transparent 100%);
+    padding: 2rem;
+  }
+
+  .latest-episode-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .latest-badge {
+    display: inline-block;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0a0e17;
+    background: #ffd000;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px 4px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .latest-episode-card {
+    background: rgba(0, 217, 255, 0.12);
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    border-radius: 0 12px 12px 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .latest-episode-card.has-image {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .latest-episode-card.no-image {
+    display: block;
+  }
+
+  .episode-image {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .episode-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .episode-content {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .episode-header h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #e8edf5;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+  }
+
+  .episode-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.9375rem;
+    color: rgba(232, 237, 245, 0.7);
+    margin-bottom: 1rem;
+  }
+
+  .episode-number {
+    color: #00d9ff;
+    font-weight: 600;
+  }
+
+  .separator {
+    color: rgba(232, 237, 245, 0.4);
+  }
+
+  @media (max-width: 1023px) {
+    .hero-text h1 {
+      font-size: 3rem;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+    }
+
+    .episode-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .episode-content {
+      padding: 1rem 1.5rem;
+    }
+
+    .episode-header h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-section {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+
+    .tagline {
+      font-size: 1.125rem;
+    }
+
+    .latest-episode-container {
+      padding: 1rem;
+    }
+
+    .latest-episode-card.has-image {
+      flex-direction: column;
+    }
+
+    .episode-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .episode-content {
+      padding: 1.5rem;
+    }
+
+    .episode-header h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>

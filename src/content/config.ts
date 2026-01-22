@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 const episodes = defineCollection({
   type: 'data',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     episodeNumber: z.number(),
     publishDate: z.coerce.date(),
@@ -14,6 +14,7 @@ const episodes = defineCollection({
       year: z.number().optional(),
     }),
     duration: z.string().optional(),
+    image: image().optional(),
   }),
 });
 
