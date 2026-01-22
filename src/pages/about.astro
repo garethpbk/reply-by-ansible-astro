@@ -1,0 +1,260 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="about-page">
+    <div class="container">
+      <h1>About Reply By Ansible</h1>
+
+      <section class="show-description">
+        <p>
+          Reply By Ansible is a podcast that traces the fascinating history of science fiction and fantasy through the lens of classic short stories. Each episode, we dive deep into a seminal work from the genre's rich literary tradition, exploring how these tales shaped the future of speculative fiction. From the Golden Age masters to contemporary visionaries, we examine the stories that asked "what if?" and changed the way we imagine tomorrow. Join us as we journey through time and space, one story at a time, uncovering the ideas and innovations that continue to inspire readers and writers today.
+        </p>
+      </section>
+
+      <section class="hosts-section">
+        <h2>Your Hosts</h2>
+
+        <div class="hosts-grid">
+          <article class="host-card">
+            <div class="host-image-placeholder">
+              <span>HOST PHOTO 1</span>
+            </div>
+            <div class="host-info">
+              <h3>Alex Rodriguez</h3>
+              <p class="host-title">Co-Host & Science Fiction Scholar</p>
+              <p class="host-bio">
+                Alex has been obsessed with science fiction since discovering a worn copy of Asimov's <em>I, Robot</em> in their grandmother's attic. With a background in literary criticism and a particular fascination with the New Wave movement of the 1960s, Alex brings scholarly insight and infectious enthusiasm to every episode. When not podcasting, they're probably re-reading Ursula K. Le Guin for the hundredth time or hunting for rare pulp magazines at estate sales.
+              </p>
+            </div>
+          </article>
+
+          <article class="host-card">
+            <div class="host-image-placeholder">
+              <span>HOST PHOTO 2</span>
+            </div>
+            <div class="host-info">
+              <h3>Jordan Chen</h3>
+              <p class="host-title">Co-Host & Genre Enthusiast</p>
+              <p class="host-bio">
+                Jordan's love for fantasy began with backyard adventures pretending to be a wizard, and never really stopped. A voracious reader with an encyclopedic knowledge of speculative fiction tropes, Jordan specializes in drawing unexpected connections between classic stories and contemporary culture. Their background in computer science gives them a unique perspective on how yesterday's science fiction became today's reality. Jordan firmly believes that the best stories are the ones that make you think long after you've finished reading.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .about-page {
+    background-color: #0a0e17;
+    min-height: 100vh;
+    padding: 6rem 2rem 4rem;
+    color: #e8edf5;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .about-page h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #e8edf5;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .show-description {
+    max-width: 900px;
+    margin: 0 auto 6rem;
+    padding: 2.5rem;
+    background: rgba(0, 217, 255, 0.05);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 12px;
+  }
+
+  .show-description p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: rgba(232, 237, 245, 0.9);
+    text-align: center;
+  }
+
+  .show-description em {
+    color: #00d9ff;
+    font-style: italic;
+  }
+
+  .hosts-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #00d9ff;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hosts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 0 auto;
+  }
+
+  .host-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(0, 217, 255, 0.15);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .host-card:hover {
+    background: rgba(0, 217, 255, 0.12);
+    border-color: rgba(0, 217, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .host-image-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 350px;
+    background: rgba(0, 217, 255, 0.1);
+    border: 2px dashed #00d9ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #00d9ff;
+    text-align: center;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  .host-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .host-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #e8edf5;
+    margin-bottom: 0.5rem;
+  }
+
+  .host-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #00d9ff;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .host-bio {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: rgba(232, 237, 245, 0.8);
+    text-align: left;
+  }
+
+  .host-bio em {
+    color: #00d9ff;
+    font-style: italic;
+  }
+
+  @media (max-width: 1023px) {
+    .about-page h1 {
+      font-size: 2.75rem;
+    }
+
+    .hosts-grid {
+      gap: 1.5rem;
+    }
+
+    .host-card {
+      padding: 1.5rem;
+    }
+
+    .host-image-placeholder {
+      font-size: 1rem;
+    }
+
+    .host-info h3 {
+      font-size: 1.5rem;
+    }
+
+    .host-bio {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-page {
+      padding: 4rem 1rem 3rem;
+    }
+
+    .about-page h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .show-description {
+      padding: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .show-description p {
+      font-size: 1.125rem;
+    }
+
+    .hosts-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .hosts-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .host-card {
+      padding: 1.5rem;
+    }
+
+    .host-image-placeholder {
+      max-width: 300px;
+    }
+
+    .host-info h3 {
+      font-size: 1.5rem;
+    }
+
+    .host-title {
+      font-size: 0.9375rem;
+    }
+
+    .host-bio {
+      font-size: 1rem;
+    }
+  }
+</style>
