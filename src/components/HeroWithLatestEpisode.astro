@@ -34,16 +34,8 @@ const formatDate = (date: Date) => {
 
 <section class="hero-section">
   <div class="hero-background">
-    <Image src={bannerImage} alt="Reply By Ansible podcast" />
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>Reply By Ansible</h1>
-      <p class="tagline">
-        Tracing the history of science fiction and fantasy through classic short
-        stories
-      </p>
+    <div class="banner-image-container">
+      <Image src={bannerImage} alt="Reply By Ansible podcast" />
     </div>
   </div>
 
@@ -64,16 +56,19 @@ const formatDate = (date: Date) => {
         }
         <div class="episode-content">
           <div class="episode-header">
-            <h2>{episode.title}</h2>
-            <div class="episode-meta">
-              <span class="episode-number">Episode {episode.episodeNumber}</span
-              >
-              <span class="separator">•</span>
-              <time datetime={episode.publishDate.toISOString()}>
-                {formatDate(episode.publishDate)}
-              </time>
-            </div>
+            <span class="episode-number">Episode {episode.episodeNumber}</span>
+            <time datetime={episode.publishDate.toISOString()}>
+              {formatDate(episode.publishDate)}
+            </time>
           </div>
+          <h2>{episode.title}</h2>
+          <p class="featured-story">
+            Featuring: <em>{episode.featuredStory.title}</em> by {
+              episode.featuredStory.author
+            }
+            {episode.featuredStory.year && `(${episode.featuredStory.year})`}
+          </p>
+          <p class="description">{episode.description}</p>
           <AudioPlayer
             audioUrl={episode.audioUrl}
             duration={episode.duration}
@@ -86,82 +81,49 @@ const formatDate = (date: Date) => {
 
 <style>
   .hero-section {
-    position: relative;
     width: 100%;
     height: 100vh;
-    min-height: 600px;
-    background-color: #0a0e17;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
 
   .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  .hero-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    flex: 1;
+    height: 60vh;
+    background: linear-gradient(135deg, #1a1f2e 0%, #0a0e17 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(
-      to bottom,
-      rgba(10, 14, 23, 0.3) 0%,
-      rgba(10, 14, 23, 0.9) 100%
-    );
+    flex-shrink: 0;
   }
 
-  .hero-text {
-    text-align: center;
+  .banner-image-container {
+    width: 100%;
+    max-width: 50vh;
+    aspect-ratio: 1 / 1;
     padding: 2rem;
   }
 
-  .hero-text h1 {
-    font-family: "Orbitron", sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
-    color: #00d9ff;
-    margin: 0 0 1rem 0;
-    letter-spacing: 0.1em;
-    text-shadow: 0 2px 20px rgba(0, 217, 255, 0.5);
-  }
-
-  .tagline {
-    font-family: "Rajdhani", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #e8edf5;
-    margin: 0;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
+  .banner-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
 
   .latest-episode-container {
-    position: relative;
-    z-index: 2;
-    background: linear-gradient(to top, #0a0e17 70%, transparent 100%);
-    padding: 2rem;
+    height: 40vh;
+    background: linear-gradient(135deg, #1a1f2e 0%, #0a0e17 100%);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
   }
 
   .latest-episode-wrapper {
     max-width: 1280px;
     margin: 0 auto;
+    width: 100%;
   }
 
   .latest-badge {
@@ -170,7 +132,7 @@ const formatDate = (date: Date) => {
     font-size: 0.875rem;
     font-weight: 600;
     color: #0a0e17;
-    background: #ffd000;
+    background: #00d9ff;
     padding: 0.5rem 1.5rem;
     border-radius: 4px 4px 0 0;
     text-transform: uppercase;
@@ -187,17 +149,27 @@ const formatDate = (date: Date) => {
 
   .latest-episode-card.has-image {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 0;
+    height: 100%;
+    max-height: calc(40vh - 3rem - 2.5rem);
   }
 
   .latest-episode-card.no-image {
     display: block;
   }
 
+  .episode-image-container {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
   .episode-image {
-    width: 200px;
-    height: 200px;
+    width: auto;
+    height: 100%;
+    max-height: calc(40vh - 3rem - 2.5rem);
+    aspect-ratio: 1 / 1;
     flex-shrink: 0;
   }
 
@@ -209,49 +181,71 @@ const formatDate = (date: Date) => {
   }
 
   .episode-content {
-    padding: 1.5rem 2rem;
+    padding: 1rem 1.5rem;
+    min-width: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 0;
-    flex: 1;
   }
 
-  .episode-header h2 {
-    font-family: "Orbitron", sans-serif;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #e8edf5;
-    margin: 0 0 0.5rem 0;
-    line-height: 1.2;
-  }
-
-  .episode-meta {
+  .episode-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.75rem;
-    font-family: "Rajdhani", sans-serif;
-    font-size: 0.9375rem;
-    color: rgba(232, 237, 245, 0.7);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .episode-number {
     color: #00d9ff;
     font-weight: 600;
+    font-size: 0.875rem;
+    font-family: "Rajdhani", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  .separator {
-    color: rgba(232, 237, 245, 0.4);
+  .latest-episode-card time {
+    color: rgba(232, 237, 245, 0.6);
+    font-size: 0.875rem;
+    font-family: "Rajdhani", sans-serif;
+  }
+
+  .latest-episode-card h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: #e8edf5;
+    line-height: 1.2;
+  }
+
+  .featured-story {
+    color: rgba(232, 237, 245, 0.8);
+    font-size: 0.8125rem;
+    font-family: "Rajdhani", sans-serif;
+    margin-bottom: 0.25rem;
+  }
+
+  .featured-story em {
+    color: #00d9ff;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .description {
+    color: rgba(232, 237, 245, 0.7);
+    font-family: "Rajdhani", sans-serif;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
   }
 
   @media (max-width: 1023px) {
-    .hero-text h1 {
-      font-size: 3rem;
-    }
-
-    .tagline {
-      font-size: 1.25rem;
+    .banner-image-container {
+      max-width: 400px;
     }
 
     .episode-image {
@@ -263,7 +257,7 @@ const formatDate = (date: Date) => {
       padding: 1rem 1.5rem;
     }
 
-    .episode-header h2 {
+    .latest-episode-card h2 {
       font-size: 1.5rem;
     }
   }
@@ -274,12 +268,9 @@ const formatDate = (date: Date) => {
       min-height: 100vh;
     }
 
-    .hero-text h1 {
-      font-size: 2rem;
-    }
-
-    .tagline {
-      font-size: 1.125rem;
+    .banner-image-container {
+      max-width: 300px;
+      padding: 1rem;
     }
 
     .latest-episode-container {
@@ -300,7 +291,7 @@ const formatDate = (date: Date) => {
       padding: 1.5rem;
     }
 
-    .episode-header h2 {
+    .latest-episode-card h2 {
       font-size: 1.25rem;
     }
   }

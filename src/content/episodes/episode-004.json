@@ -1,13 +1,15 @@
 {
-  "title": "When Dragons Learned to Code",
+  "title": "The Big Time",
   "episodeNumber": 4,
-  "publishDate": "2025-01-13T00:00:00.000Z",
-  "description": "The ancient beasts discover programming languages and suddenly every treasure hoard is blockchain-based. A tale of magic meeting machine learning.",
-  "audioUrl": "https://example.com/audio/episode-004.mp3",
+  "publishDate": "2022-08-21T00:00:00.000Z",
+  "description": "The 1958 story by Fritz Leiber.",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/56457365/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-7-23%2F38d37567-c765-8d1c-b684-91b10f6530bd.mp3",
+  "storyUrl": "https://www.gutenberg.org/ebooks/32256",
   "featuredStory": {
-    "title": "We Can Remember It for You Wholesale",
-    "author": "Philip K. Dick",
-    "year": 1966
+    "title": "The Big Time",
+    "author": "Fritz Leiber",
+    "year": 1958
   },
-  "duration": "41:55"
+  "duration": "01:07:52",
+  "image": "../../assets/images/episode_004.jpg"
 }

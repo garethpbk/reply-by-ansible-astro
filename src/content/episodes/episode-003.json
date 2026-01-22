@@ -1,13 +1,15 @@
 {
-  "title": "The Last Librarian of Mars",
+  "title": "The Hoard of the Gibbelins",
   "episodeNumber": 3,
-  "publishDate": "2025-01-09T00:00:00.000Z",
-  "description": "In the dusty archives of the Red Planet, one librarian fights to preserve humanity's stories against cosmic bureaucracy and Dewey Decimal disasters.",
-  "audioUrl": "https://example.com/audio/episode-003.mp3",
+  "publishDate": "2022-08-15T00:00:00.000Z",
+  "description": "In part two of our two-for-one conversation, we discuss the 1912 short story \"The Hoard of the Gibbelins\" by Lord Dunsany (aka Edward John Moreton Drax Plunkett, 18th Baron of Dunsany).",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/56212854/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-7-15%2F56770c73-d319-ae67-7526-c574d201f853.mp3",
+  "storyUrl": "https://www.gutenberg.org/ebooks/7477",
   "featuredStory": {
-    "title": "The Nine Billion Names of God",
-    "author": "Arthur C. Clarke",
-    "year": 1953
+    "title": "The Hoard of the Gibbelins",
+    "author": "Lord Dunsany",
+    "year": 1912
   },
-  "duration": "45:18"
+  "duration": "00:32:00",
+  "image": "../../assets/images/episode_003.jpg"
 }

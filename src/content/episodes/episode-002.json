@@ -1,13 +1,15 @@
 {
-  "title": "Robots in Love with Toasters",
+  "title": "The Fullness of Life",
   "episodeNumber": 2,
-  "publishDate": "2025-01-05T00:00:00.000Z",
-  "description": "A philosophical exploration of artificial intelligence romance and small appliance attraction. What happens when your smart home develops feelings?",
-  "audioUrl": "https://example.com/audio/episode-002.mp3",
+  "publishDate": "2022-07-24T00:00:00.000Z",
+  "description": "If you thought Edith Wharton only wrote about rich New Yorkers with rich New York problems, think again! Join us as we explore a late 19th Century ghost story from one of the era's greatest writers. The first half of a double episode, with the latter to feature Lord Dunsany.",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/54423780/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-6-25%2F541f2406-c846-6805-c8ab-d7aa259f95af.mp3",
+  "storyUrl": "https://public.wsu.edu/~campbelld/wharton/books/fulnessoflife.htm",
   "featuredStory": {
-    "title": "Nightfall",
-    "author": "Isaac Asimov",
-    "year": 1941
+    "title": "The Fullness of Life",
+    "author": "Edith Wharton",
+    "year": 1893
   },
-  "duration": "38:42"
+  "duration": "54:11",
+  "image": "../../assets/images/episode_002.jpg"
 }

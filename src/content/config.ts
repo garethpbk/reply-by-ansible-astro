@@ -15,6 +15,7 @@ const episodes = defineCollection({
     }),
     duration: z.string().optional(),
     image: image().optional(),
+    storyUrl: z.string().url().optional(),
   }),
 });
 
