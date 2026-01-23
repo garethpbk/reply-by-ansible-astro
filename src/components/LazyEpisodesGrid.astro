@@ -1,0 +1,131 @@
+---
+import EpisodeCard from "./EpisodeCard.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  episodes: CollectionEntry<"episodes">[];
+  itemsPerLoad?: number;
+}
+
+const { episodes, itemsPerLoad = 6 } = Astro.props; // Default to 6 (2 rows of 3)
+---
+
+<div class="lazy-episodes-wrapper">
+  <div class="episodes-grid" id="episodes-grid">
+    {
+      episodes.map((episode, index) => (
+        <div
+          class="episode-item"
+          data-index={index}
+          style={index >= itemsPerLoad ? "display: none;" : ""}
+        >
+          <EpisodeCard episode={episode.data} />
+        </div>
+      ))
+    }
+  </div>
+
+  {
+    episodes.length > itemsPerLoad && (
+      <div class="load-more-container">
+        <button id="load-more-btn" class="load-more-btn">
+          Load More Episodes
+        </button>
+      </div>
+    )
+  }
+</div>
+
+<script define:vars={{ itemsPerLoad, totalEpisodes: episodes.length }}>
+  let currentlyVisible = itemsPerLoad;
+
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const episodeItems = document.querySelectorAll(".episode-item");
+
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", () => {
+      const nextBatch = currentlyVisible + itemsPerLoad;
+
+      // Show the next batch of episodes
+      for (let i = currentlyVisible; i < nextBatch && i < totalEpisodes; i++) {
+        const item = episodeItems[i];
+        if (item) {
+          item.style.display = "block";
+        }
+      }
+
+      currentlyVisible = Math.min(nextBatch, totalEpisodes);
+
+      // Hide button if all episodes are visible
+      if (currentlyVisible >= totalEpisodes) {
+        loadMoreBtn.style.display = "none";
+      }
+    });
+  }
+</script>
+
+<style>
+  .lazy-episodes-wrapper {
+    width: 100%;
+  }
+
+  .episodes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .episodes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .episodes-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .episode-item {
+    width: 100%;
+  }
+
+  .load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .load-more-btn {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0a0e17;
+    background: #00d9ff;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+
+  .load-more-btn:hover {
+    background: #00c4e6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4);
+  }
+
+  .load-more-btn:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 767px) {
+    .load-more-btn {
+      font-size: 0.875rem;
+      padding: 0.875rem 2rem;
+    }
+  }
+</style>

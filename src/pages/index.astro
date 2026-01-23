@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroWithLatestEpisode from '../components/HeroWithLatestEpisode.astro';
-import EpisodeCard from '../components/EpisodeCard.astro';
+import LazyEpisodesGrid from '../components/LazyEpisodesGrid.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -18,11 +18,7 @@ const sortedEpisodes = allEpisodes
     <section class="episodes-section">
       <div class="container">
         <h2>Previous Episodes</h2>
-        <div class="episodes-grid">
-          {sortedEpisodes.slice(1).map((episode: CollectionEntry<'episodes'>) => (
-            <EpisodeCard episode={episode.data} />
-          ))}
-        </div>
+        <LazyEpisodesGrid episodes={sortedEpisodes.slice(1)} itemsPerLoad={6} />
       </div>
     </section>
   )}
@@ -49,25 +45,9 @@ const sortedEpisodes = allEpisodes
     letter-spacing: 0.05em;
   }
 
-  .episodes-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .episodes-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
   @media (min-width: 1024px) {
     .episodes-section {
       padding: 6rem 2rem;
-    }
-
-    .episodes-grid {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 
