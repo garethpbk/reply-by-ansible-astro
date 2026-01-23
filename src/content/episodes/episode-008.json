@@ -1,0 +1,15 @@
+{
+  "title": "The Horla",
+  "episodeNumber": 8,
+  "publishDate": "2022-10-31T00:00:00.000Z",
+  "description": "Halloween Special Part 1: the 1887 story by Guy de Maupassant.",
+  "audioUrl": "https://anchor.fm/s/9ebdf594/podcast/play/59836238/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2022-9-31%2F00550702-eb1f-6904-4bef-9ee45d689e7c.mp3",
+  "storyUrl": "https://www.gutenberg.org/files/593/593-h/593-h.htm",
+  "featuredStory": {
+    "title": "The Horla",
+    "author": "Guy de Maupassant",
+    "year": 1887
+  },
+  "duration": "01:05:28",
+  "image": "../../assets/images/episode_008.jpg"
+}
