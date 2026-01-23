@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroWithLatestEpisode from '../components/HeroWithLatestEpisode.astro';
-import LazyEpisodesGrid from '../components/LazyEpisodesGrid.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -9,6 +9,10 @@ import type { CollectionEntry } from 'astro:content';
 const allEpisodes = await getCollection('episodes');
 const sortedEpisodes = allEpisodes
   .sort((a: CollectionEntry<'episodes'>, b: CollectionEntry<'episodes'>) => b.data.episodeNumber - a.data.episodeNumber);
+
+// Show only first 6 episodes initially (truly not rendering the rest)
+const initialEpisodes = sortedEpisodes.slice(1, 7); // Skip hero episode, show 6 more
+const hasMore = sortedEpisodes.length > 7;
 ---
 
 <Layout>
@@ -18,7 +22,20 @@ const sortedEpisodes = allEpisodes
     <section class="episodes-section">
       <div class="container">
         <h2>Previous Episodes</h2>
-        <LazyEpisodesGrid episodes={sortedEpisodes.slice(1)} itemsPerLoad={6} />
+        <div class="episodes-grid">
+          {initialEpisodes.map((episode) => (
+            <div class="episode-item">
+              <EpisodeCard episode={episode.data} />
+            </div>
+          ))}
+        </div>
+        {hasMore && (
+          <div class="load-more-container">
+            <a href="/episodes" class="load-more-btn">
+              View All Episodes
+            </a>
+          </div>
+        )}
       </div>
     </section>
   )}
@@ -43,6 +60,61 @@ const sortedEpisodes = allEpisodes
     color: #e8edf5;
     text-align: left;
     letter-spacing: 0.05em;
+  }
+
+  .episodes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .episodes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .episodes-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .episode-item {
+    width: 100%;
+  }
+
+  .load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .load-more-btn {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0a0e17;
+    background: #00d9ff;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .load-more-btn:hover {
+    background: #00c4e6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4);
+  }
+
+  .load-more-btn:active {
+    transform: translateY(0);
   }
 
   @media (min-width: 1024px) {
