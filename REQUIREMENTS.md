@@ -35,3 +35,7 @@ A website for **Reply By Ansible**, a podcast about science fiction and fantasy 
 - Astro as the static site generator
 - Content collections for episode management
 - Markdown/MDX support for episode and page content
+
+## Future Features
+
+- Each episode has its own page that goes over the story details as well as the other things each author is reading
