@@ -1,5 +1,5 @@
 ---
-import AudioPlayer from './AudioPlayer.astro';
+import EpisodePlayButton from './EpisodePlayButton.astro';
 import { Image } from 'astro:assets';
 import bannerImage from '../assets/images/reply_by_ansible_banner_square.jpg';
 
@@ -36,7 +36,12 @@ const { episode } = Astro.props;
           {episode.featuredStory.year && `(${episode.featuredStory.year})`}
         </p>
         <p class="description">{episode.description}</p>
-        <AudioPlayer audioUrl={episode.audioUrl} duration={episode.duration} />
+        <EpisodePlayButton
+          audioUrl={episode.audioUrl}
+          episodeNumber={episode.episodeNumber}
+          title={episode.title}
+          duration={episode.duration}
+        />
       </div>
     </div>
   </div>

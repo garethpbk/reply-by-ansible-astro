@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HeroWithLatestEpisode from '../components/HeroWithLatestEpisode.astro';
 import EpisodeCard from '../components/EpisodeCard.astro';
+import ContinueListening from '../components/ContinueListening.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -16,6 +17,7 @@ const hasMore = sortedEpisodes.length > 7;
 ---
 
 <Layout>
+  <ContinueListening />
   <HeroWithLatestEpisode episode={sortedEpisodes[0].data} />
 
   {sortedEpisodes.length > 1 && (

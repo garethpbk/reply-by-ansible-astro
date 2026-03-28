@@ -1,0 +1,37 @@
+---
+interface Props {
+  audioUrl: string;
+  episodeNumber: number;
+  title: string;
+  duration?: string;
+  image?: string;
+}
+
+const { audioUrl, episodeNumber, title, duration, image } = Astro.props;
+---
+
+<div class="episode-play-control">
+  <button
+    class="play-episode-btn"
+    data-play-episode
+    data-audio-url={audioUrl}
+    data-episode-number={episodeNumber}
+    data-title={title}
+    data-duration={duration}
+    data-image={image}
+    aria-label={`Play episode ${episodeNumber}: ${title}`}
+  >
+    <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <polygon points="5,3 19,12 5,21" />
+    </svg>
+    <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <rect x="6" y="4" width="4" height="16" /><rect x="14" y="4" width="4" height="16" />
+    </svg>
+  </button>
+  <div class="episode-play-right">
+    {duration && <span class="episode-play-duration">{duration}</span>}
+    <div class="episode-progress-bar">
+      <div class="episode-progress-fill" data-progress-episode={episodeNumber}></div>
+    </div>
+  </div>
+</div>

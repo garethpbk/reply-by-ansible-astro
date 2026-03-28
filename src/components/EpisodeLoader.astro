@@ -70,10 +70,31 @@ const { initialEpisodes, itemsPerLoad = 6 } = Astro.props;
                   </div>
                 ` : ''}
                 <div class="episode-actions">
-                  <audio controls class="episode-audio">
-                    <source src="${episode.audioUrl}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
+                  <div class="episode-play-control">
+                    <button
+                      class="play-episode-btn"
+                      data-play-episode
+                      data-audio-url="${episode.audioUrl}"
+                      data-episode-number="${episode.episodeNumber}"
+                      data-title="${episode.title}"
+                      data-duration="${episode.duration || ''}"
+                      data-image="${episode.image?.src || ''}"
+                      aria-label="Play episode ${episode.episodeNumber}"
+                    >
+                      <svg class="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21"/>
+                      </svg>
+                      <svg class="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>
+                      </svg>
+                    </button>
+                    <div class="episode-play-right">
+                      ${episode.duration ? `<span class="episode-play-duration">${episode.duration}</span>` : ''}
+                      <div class="episode-progress-bar">
+                        <div class="episode-progress-fill" data-progress-episode="${episode.episodeNumber}"></div>
+                      </div>
+                    </div>
+                  </div>
                   ${episode.storyUrl ? `<a href="${episode.storyUrl}" class="read-story-link" target="_blank" rel="noopener noreferrer">Read Story</a>` : ''}
                 </div>
               </div>
@@ -82,6 +103,9 @@ const { initialEpisodes, itemsPerLoad = 6 } = Astro.props;
 
           episodesGrid.appendChild(episodeItem);
         });
+
+        // Update progress bars on newly added cards
+        (window as any).__rbaUpdateProgress?.();
 
         offset += itemsPerLoad;
 

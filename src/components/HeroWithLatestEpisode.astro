@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import AudioPlayer from "./AudioPlayer.astro";
+import EpisodePlayButton from "./EpisodePlayButton.astro";
 import bannerImage from "../assets/images/reply_by_ansible_banner_square.jpg";
 import type { ImageMetadata } from "astro";
 
@@ -69,9 +69,12 @@ const formatDate = (date: Date) => {
             {episode.featuredStory.year && `(${episode.featuredStory.year})`}
           </p>
           <p class="description">{episode.description}</p>
-          <AudioPlayer
+          <EpisodePlayButton
             audioUrl={episode.audioUrl}
+            episodeNumber={episode.episodeNumber}
+            title={episode.title}
             duration={episode.duration}
+            image={episode.image?.src}
           />
         </div>
       </article>
